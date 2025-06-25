@@ -1,11 +1,11 @@
 import re
 import time
-from playwright.sync_api import Playwright, sync_playwright, expect
+from playwright.sync_api import Playwright
 from dotenv import load_dotenv
 import os
 
 
-def runs(playwright: Playwright) -> None:
+def get_themes_from_untis(playwright: Playwright, date) -> None:
     load_dotenv()
     WEB_UNTIS_USERNAME = os.getenv("WEB_UNTIS_USERNAME")
     WEB_UNTIS_PASSWORD = os.getenv("WEB_UNTIS_PASSWORD")
@@ -25,9 +25,14 @@ def runs(playwright: Playwright) -> None:
     page.get_by_role("button", name="Sign In").click()
     page.get_by_role("button", name="Yes").click()
     page.get_by_role("link", name="Mein Stundenplan").click()
-    page.get_by_test_id("date-picker-with-arrows-previous").click()
-    page.get_by_test_id("date-picker-with-arrows-previous").click()
-    page.get_by_test_id("date-picker-with-arrows-previous").click()
+    time.sleep(2)
+    full_url = page.evaluate("window.location.href")
+
+    def update_date_in_url(url: str, day: int, month: int, year: int) -> str:
+        return url.split("?")[0] + f"?date={year:04d}-{month:02d}-{day:02d}"
+
+    new_url = update_date_in_url(full_url, 3, 2, 2025)
+    page.goto(new_url)
 
     page.wait_for_selector(".timetable-grid-card", timeout=15000)
     cards = page.locator(".timetable-grid-card")
