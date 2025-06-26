@@ -24,8 +24,12 @@ def get_themes_from_untis(playwright: Playwright, date) -> None:
 
     new_url = update_date_in_url(full_url, int(date[0]), int(date[1]), int(date[2]))
     page.goto(new_url)
-
-    page.wait_for_selector(".timetable-grid-card", timeout=15000)
+    try:
+        page.wait_for_selector(".timetable-grid-card", timeout=5000)
+    except Exception as e:
+        page_content = page.content()
+        if "Ferien" in page_content:
+            return "Ferien"
     cards = page.locator(".timetable-grid-card")
     count = cards.count()
     texts = ""

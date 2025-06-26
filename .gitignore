@@ -1,5 +1,69 @@
-.env
+# Python virtual environments
 .venv/
 venv/
 env/
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment variables
+.env
+.env.*
+
+# PyCharm / IntelliJ settings
 .idea/
+
+# VS Code settings
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Mypy, Pyre type checker
+.mypy_cache/
+.pyre/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Local dev tools
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+
+# SQLite DBs (if any)
+*.sqlite3
+*.db
+
+# Node (if fullstack project)
+node_modules/
+
+# Ignore local docker files
+docker-compose.override.yml
