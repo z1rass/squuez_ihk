@@ -10,7 +10,7 @@ studies = (
 )
 
 
-client = genai.Client(api_key="TOKEN")
+client = genai.Client(api_key="GEMINI_TOKEN")
 response = client.models.generate_content(
     model="gemini-2.5-flash",
     contents=(

@@ -20,8 +20,3 @@ def get_date(playwright: Playwright) -> None:
     return value
     context.close()
     browser.close()
-
-
-# with sync_playwright() as playwright:
-#     themes = get_themes_from_untis(playwright, ["2025", "03", "02"])
-#     run(playwright, themes)
