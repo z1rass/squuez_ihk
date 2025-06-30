@@ -17,6 +17,14 @@ def get_themes_from_untis(playwright: Playwright, date) -> None:
     page.get_by_role("textbox", name="Password").fill(WEB_UNTIS_PASSWORD)
 
     page.get_by_role("button", name="Sign In").click()
+    time.sleep(2)
+    page_content = page.content()
+    if "Unexpected error when authenticating with identity provider" in page_content:
+        page.reload()
+        time.sleep(1)
+        page.click("#loginRestartLink")
+        time.sleep(1)
+
     page.get_by_role("button", name="Yes").click()
     page.get_by_role("link", name="Mein Stundenplan").click()
     time.sleep(2)
